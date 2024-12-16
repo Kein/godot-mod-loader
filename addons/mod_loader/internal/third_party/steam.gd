@@ -42,7 +42,10 @@ static func load_steam_workshop_zips() -> Dictionary:
 			continue
 
 		# Loop 2: ZIPs inside the workshop folders
-		zip_data.merge(_ModLoaderFile.load_zips_in_folder(ProjectSettings.globalize_path(item_path)))
+		# zip_data.merge(_ModLoaderFile.load_zips_in_folder(ProjectSettings.globalize_path(item_path)))
+		var temp = _ModLoaderFile.load_zips_in_folder(ProjectSettings.globalize_path(item_path))
+		for key in temp.keys():
+			zip_data[key] = temp[key]
 
 	workshop_dir.list_dir_end()
 
@@ -70,7 +73,8 @@ static func _get_path_to_workshop() -> String:
 	path_array.resize(path_array.size() - 3)
 
 	# Reconstruct the path, now that it has "common/GameName" removed
-	path = "/".join(path_array)
+	# path = "/".join(path_array)
+	path = path_array.join("/")
 
 	# Append the workgame's workshop path
 	path = path.plus_file("workshop/content/" + _get_steam_app_id())

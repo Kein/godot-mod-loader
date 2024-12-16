@@ -322,7 +322,7 @@ func _validate_number(input_data: float, input_schema: Dictionary, property_name
 		mult = int(mult) if integer_mode else mult
 
 		# Check if the number has more decimal places then allowed
-		var decimal_places := str(input_data).get_slice('.', 1)
+		var decimal_places := str(input_data).split(".")[1]
 		if not decimal_places.empty() and decimal_places.length() > MAX_DECIMAL_PLACES:
 			return ERR_INVALID_NUMBER % [property_name, input_data, str(MAX_DECIMAL_PLACES)]
 

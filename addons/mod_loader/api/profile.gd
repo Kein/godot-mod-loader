@@ -230,7 +230,9 @@ static func _update_mod_lists() -> bool:
 		var profile: ModUserProfile = ModLoaderStore.user_profiles[profile_name]
 
 		# Merge the profiles mod_list with the previously created current_mod_list
-		profile.mod_list.merge(current_mod_list)
+		# profile.mod_list.merge(current_mod_list)
+		for key in current_mod_list.keys():
+			profile.mod_list[key] = current_mod_list[key]
 
 		var update_mod_list := _update_mod_list(profile.mod_list)
 

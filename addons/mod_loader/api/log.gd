@@ -54,7 +54,7 @@ class ModLoaderLogEntry:
 		message = _message
 		type = _type
 		time = _time
-		time_stamp = Time.get_ticks_msec()
+		time_stamp = OS.get_ticks_msec()
 
 
 	# Get the log entry as a formatted string.
@@ -448,13 +448,13 @@ class ModLoaderLogCompare:
 
 # Returns the current time as a string in the format hh:mm:ss
 static func _get_time_string() -> String:
-	var date_time := Time.get_datetime_dict_from_system()
+	var date_time := OS.get_datetime()
 	return "%02d:%02d:%02d" % [ date_time.hour, date_time.minute, date_time.second ]
 
 
 # Returns the current date as a string in the format yyyy-mm-dd
 static func _get_date_string() -> String:
-	var date_time := Time.get_datetime_dict_from_system()
+	var date_time := OS.get_datetime()
 	return "%s-%02d-%02d" % [ date_time.year, date_time.month, date_time.day ]
 
 

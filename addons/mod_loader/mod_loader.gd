@@ -236,11 +236,15 @@ func _load_mod_zips() -> Dictionary:
 
 		# If we're not using Steam workshop, just loop over the mod ZIPs.
 		var loaded_zip_data := _ModLoaderFile.load_zips_in_folder(mods_folder_path)
-		zip_data.merge(loaded_zip_data)
+		# zip_data.merge(loaded_zip_data)
+		for key in loaded_zip_data.keys():
+			zip_data[key] = loaded_zip_data[key]
 	else:
 		# If we're using Steam workshop, loop over the workshop item directories
 		var loaded_workshop_zip_data := _ModLoaderSteam.load_steam_workshop_zips()
-		zip_data.merge(loaded_workshop_zip_data)
+		#zip_data.merge(loaded_workshop_zip_data)
+		for key in loaded_workshop_zip_data.keys():
+			zip_data[key] = loaded_workshop_zip_data[key]
 
 	return zip_data
 

@@ -390,9 +390,14 @@ static func validate_distinct_mod_ids_in_arrays(
 	var overlaps: PoolStringArray = []
 
 	# Loop through each incompatibility and check if it is also listed as a dependency.
+	# for mod_id in array_one:
+	# 	if array_two.has(mod_id):
+	# 		overlaps.push_back(mod_id)
 	for mod_id in array_one:
-		if array_two.has(mod_id):
-			overlaps.push_back(mod_id)
+		for arr2_entry in array_two:
+			if arr2_entry == mod_id:
+				overlaps.push_back(mod_id)
+				break
 
 	# If no overlaps were found
 	if overlaps.size() == 0:
